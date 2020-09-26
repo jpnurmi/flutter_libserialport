@@ -29,6 +29,8 @@ flutter:
     platforms:
       linux:
         pluginClass: FlutterSerialPortPlugin
+      windows:
+        pluginClass: FlutterSerialPortPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
