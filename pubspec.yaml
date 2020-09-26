@@ -27,6 +27,9 @@ flutter:
   # adding or updating assets for this project.
   plugin:
     platforms:
+      android:
+        pluginClass: FlutterSerialPortPlugin
+        package: org.sigrok.flutter_serial_port
       linux:
         pluginClass: FlutterSerialPortPlugin
       windows:
