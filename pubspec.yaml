@@ -1,6 +1,6 @@
 name: flutter_serial_port
-description: Serial Port for Flutter (FFI bindings to libserialport,
-  a minimal C-library by sigrok).
+description: A simple wrapper around dart_serial_port utilizing Flutter's
+  build system to build and deploy libserialport for the target platform.
 version: 0.0.1
 homepage: https://github.com/jpnurmi/flutter_serial_port
 repository: https://github.com/jpnurmi/flutter_serial_port
