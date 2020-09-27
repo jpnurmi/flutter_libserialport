@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------
+libserialport: cross-platform library for accessing serial ports
+-------------------------------------------------------------------------------
+
+libserialport is a minimal library written in C that is intended to take care
+of the OS-specific details when writing software that uses serial ports.
+
+By writing your serial code to use libserialport, you enable it to work
+transparently on any platform supported by the library.
+
+The operations that are supported are:
+
+- Port enumeration (obtaining a list of serial ports on the system).
+- Obtaining port metadata (USB device information, Bluetooth address, etc).
+- Opening and closing ports.
+- Setting port parameters (baud rate, parity, etc).
+- Reading, writing and flushing data.
+- Obtaining error information.
+
+libserialport is an open source project released under the LGPL3+ license.
+
+Status
+======
+
+The library should build and work on any Windows or Unix-based system. If it
+does not, please submit a bug.
+
+Enumeration is currently implemented on Windows, Mac OS X, FreeBSD and Linux.
+On other systems enumeration is not supported, but ports can still be opened
+by name and then used.
+
+If you know how to enumerate available ports on another OS, please submit a bug
+with this information, or better still a patch implementing it.
+
+Dependencies
+============
+
+No other libraries are required.
+
+Building
+========
+
+On Windows, libserialport can be built with Visual Studio 2019 or with
+the standalone MSBuild tool, using the solution and project files provided.
+
+For other environments, the package uses a GNU style build based on autotools.
+
+Run "./autogen.sh" to generate the build system, "./configure" to setup, then
+"make" to build the library and "make install" to install it.
+
+Windows builds can also be created using the autotools build system, using the
+MinGW-w64 toolchain from http://mingw-w64.sourceforge.net/ - either natively
+in Windows with the MSYS2 environment, or cross-compiling from another system.
+
+To build from MSYS2, the following packages must be installed: autoconf,
+automake-wrapper, libtool, make, and either mingw-w64-i686-gcc (for 32-bit)
+or mingw-w64-x86_64-gcc (for 64-bit). Open either the "MSYS2 MinGW 32-bit" or
+"MSYS2 MinGW 64-bit" command window from the Start menu and use this when
+configuring and building the package. Using the "MSYS2 MSYS" shell will build
+against the Cygwin compatibility layer; this works, but port enumeration and
+metadata will not be available, and binaries will depend on Cygwin. The builds
+produced by MinGW-w64 are normal Windows DLLs without additional dependencies.
+
+API
+===
+
+Doxygen API documentation is included.
+
+It can also be viewed online at:
+
+  http://sigrok.org/api/libserialport/unstable/
+
+Bug reports
+===========
+
+You can report bugs for libserialport at https://sigrok.org/bugzilla.
+
+Mailing list
+============
+
+ https://lists.sourceforge.net/lists/listinfo/sigrok-devel
+
+IRC
+===
+
+You can find the developers in the #sigrok IRC channel on Freenode.
+
+Website
+=======
+
+http://sigrok.org/wiki/Libserialport
+

@@ -1,0 +1,33 @@
+This directory contains example programs showing how to use libserialport.
+
+The examples currently included are:
+
+list_ports.c - displays a list of ports on the system.
+port_info.c - displays info about a particular port on the system.
+port_config.c - sets and displays configuration settings on a port.
+send_receive.c - loopback test sending & receiving data on 1 or 2 ports.
+await_events.c - awaits receive events on multiple ports simultaneously.
+handle_errors.c - demonstrates handling errors returned from the library.
+
+The programs themselves are completely OS-independent, and require only a
+C compiler and libserialport.
+
+The 'examples.sln' file is a solution file for Microsoft Visual Studio 2019
+which will build libserialport and all of the example programs.
+
+The Makefile in this directory will attempt to build all the examples,
+using 'gcc' to compile them and 'pkg-config' to discover the include
+paths and linker settings needed to build with libserialport. It provides
+a minimal example of how to write a Makefile to build a program using
+libserialport.
+
+If you have make, gcc, pkg-config and libserialport installed correctly
+then running 'make' should build the example programs in this directory.
+If this doesn't work, you may need to modify the Makefile or set necessary
+paths in your environment to suit your system.
+
+You can also build these examples using any other compiler, IDE or build
+system. You just need the libserialport.h header available to compile them,
+and the libserialport library available to link and run them.
+
+These example files are hereby released into the public domain by the author.
