@@ -31,6 +31,10 @@
 .pub/
 /build/
 
+# Desktop related
+generated_plugin_registrant.*
+generated_plugins.cmake
+
 # Web related
 lib/generated_plugin_registrant.dart
 
