@@ -15,6 +15,8 @@ Supported platforms:
 
 Support for macOS & CocoaPods is also planned.
 
+![screenshot](https://raw.githubusercontent.com/jpnurmi/flutter_serial_port/master/doc/images/flutter_serial_port.png)
+
 ## Usage
 
 To use this package, add `flutter_serial_port` as a [dependency in your pubspec.yaml file](https://dart.dev/tools/pub/dependencies).
