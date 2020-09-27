@@ -1,15 +1,20 @@
-# flutter_serial_port
+# Serial Port for Flutter
 
-A new flutter plugin project.
+[![pub](https://img.shields.io/pub/v/flutter_serial_port.svg)](https://pub.dev/packages/flutter_serial_port)
+[![license: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Getting Started
+`flutter_serial_port` is a simple wrapper around [`dart_serial_port`](https://pub.dev/packages/dart_serial_port),
+utilizing Flutter's build system to build and deploy [libserialport](https://sigrok.org/wiki/Libserialport)
+under the hood. This package does not provide any additional API, but merely helps to make things work
+"out of the box" without the need of manually building and deploying libserialport.
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+Supported platforms:
+- Linux
+- Windows
+- Android
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Support for macOS & CocoaPods is also planned.
 
+## Usage
+
+To use this package, add `flutter_serial_port` as a [dependency in your pubspec.yaml file](https://dart.dev/tools/pub/dependencies).
