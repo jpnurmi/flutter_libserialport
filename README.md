@@ -10,10 +10,9 @@ under the hood. This package does not provide any additional API, but merely hel
 
 Supported platforms:
 - Linux
+- macOS
 - Windows
 - Android
-
-Support for macOS & CocoaPods is also planned.
 
 ![screenshot](https://raw.githubusercontent.com/jpnurmi/flutter_serial_port/master/doc/images/flutter_serial_port.png)
 

@@ -27,5 +27,7 @@ flutter:
         package: org.sigrok.flutter_serial_port
       linux:
         pluginClass: FlutterSerialPortPlugin
+      macos:
+        pluginClass: FlutterSerialPortPlugin
       windows:
         pluginClass: FlutterSerialPortPlugin
