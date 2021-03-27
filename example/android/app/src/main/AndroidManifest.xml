@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.sigrok.flutter_serial_port_example">
+    package="org.sigrok.flutter_serialport_example">
    <application
-        android:label="flutter_serial_port_example"
+        android:label="flutter_serialport_example"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

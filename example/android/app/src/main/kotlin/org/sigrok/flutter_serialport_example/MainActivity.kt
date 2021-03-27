@@ -1,4 +1,4 @@
-package org.sigrok.flutter_serial_port_example
+package org.sigrok.flutter_serialport_example
 
 import io.flutter.embedding.android.FlutterActivity
 
