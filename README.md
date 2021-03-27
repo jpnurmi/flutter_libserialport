@@ -1,7 +1,7 @@
 # Serial Port for Flutter
 
-`flutter_serial_port` is a simple wrapper around [`dart_serial_port`](https://pub.dev/packages/dart_serial_port),
-utilizing Flutter's build system to build and deploy [`libserialport`](https://sigrok.org/wiki/Libserialport)
+`flutter_serial_port` is a simple wrapper around [`libserialport`](https://pub.dev/packages/libserialport),
+utilizing Flutter's build system to build and deploy the [C-library](https://sigrok.org/wiki/Libserialport)
 under the hood. This package does not provide any additional API, but merely helps to make things work
 "out of the box" without the need of manually building and deploying libserialport.
 

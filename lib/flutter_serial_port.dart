@@ -1,1 +1,1 @@
-export 'package:dart_serial_port/dart_serial_port.dart';
+export 'package:libserialport/libserialport.dart';
