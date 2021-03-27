@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-set(PROJECT_NAME "flutter_serial_port")
+set(PROJECT_NAME "flutter_serialport")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
 set(PLUGIN_NAME "${PROJECT_NAME}_plugin")
@@ -16,7 +16,7 @@ target_include_directories(${PLUGIN_NAME} INTERFACE
 target_link_libraries(${PLUGIN_NAME} PRIVATE flutter)
 target_link_libraries(${PLUGIN_NAME} PRIVATE PkgConfig::GTK)
 
-set(flutter_serial_port_bundled_libraries
+set(flutter_serialport_bundled_libraries
   "$<TARGET_FILE:serialport>"
   PARENT_SCOPE
 )
