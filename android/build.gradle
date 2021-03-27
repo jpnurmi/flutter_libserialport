@@ -1,4 +1,4 @@
-group 'org.sigrok.flutter_serial_port'
+group 'org.sigrok.flutter_serialport'
 version '1.0-SNAPSHOT'
 
 buildscript {

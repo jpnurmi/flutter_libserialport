@@ -1,4 +1,4 @@
-package org.sigrok.flutter_serial_port
+package org.sigrok.flutter_serialport
 
 import androidx.annotation.NonNull
 
@@ -18,7 +18,7 @@ class FlutterSerialPortPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_serial_port")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_serialport")
     channel.setMethodCallHandler(this)
   }
 
