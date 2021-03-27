@@ -1,8 +1,7 @@
-#include "include/flutter_serial_port/flutter_serial_port_plugin.h"
-
-#include <windows.h>
+#include "include/flutter_serialport/flutter_serialport_plugin.h"
 
 #include <flutter/plugin_registrar_windows.h>
+#include <windows.h>
 
 #include <memory>
 
