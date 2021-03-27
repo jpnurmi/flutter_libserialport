@@ -33,6 +33,7 @@ build/
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
+**/android/.cxx/
 **/android/captures/
 **/android/gradlew
 **/android/gradlew.bat
