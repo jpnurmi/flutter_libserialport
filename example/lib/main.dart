@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_serial_port/flutter_serial_port.dart';
+import 'package:flutter_serialport/flutter_serialport.dart';
 
 void main() => runApp(ExampleApp());
 
