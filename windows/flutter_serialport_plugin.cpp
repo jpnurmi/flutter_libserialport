@@ -7,30 +7,30 @@
 
 namespace {
 
-class FlutterSerialPortPlugin : public flutter::Plugin {
+class FlutterSerialportPlugin : public flutter::Plugin {
  public:
   static void RegisterWithRegistrar(flutter::PluginRegistrarWindows *registrar);
 
-  FlutterSerialPortPlugin();
+  FlutterSerialportPlugin();
 
-  virtual ~FlutterSerialPortPlugin();
+  virtual ~FlutterSerialportPlugin();
 };
 
-void FlutterSerialPortPlugin::RegisterWithRegistrar(
+void FlutterSerialportPlugin::RegisterWithRegistrar(
     flutter::PluginRegistrarWindows *registrar) {
-  auto plugin = std::make_unique<FlutterSerialPortPlugin>();
+  auto plugin = std::make_unique<FlutterSerialportPlugin>();
   registrar->AddPlugin(std::move(plugin));
 }
 
-FlutterSerialPortPlugin::FlutterSerialPortPlugin() {}
+FlutterSerialportPlugin::FlutterSerialportPlugin() {}
 
-FlutterSerialPortPlugin::~FlutterSerialPortPlugin() {}
+FlutterSerialportPlugin::~FlutterSerialportPlugin() {}
 
 }  // namespace
 
-void FlutterSerialPortPluginRegisterWithRegistrar(
+void FlutterSerialportPluginRegisterWithRegistrar(
     FlutterDesktopPluginRegistrarRef registrar) {
-  FlutterSerialPortPlugin::RegisterWithRegistrar(
+  FlutterSerialportPlugin::RegisterWithRegistrar(
       flutter::PluginRegistrarManager::GetInstance()
           ->GetRegistrar<flutter::PluginRegistrarWindows>(registrar));
 }

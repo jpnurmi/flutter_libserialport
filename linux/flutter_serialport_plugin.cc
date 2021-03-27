@@ -5,19 +5,19 @@
 
 #define FLUTTER_SERIALPORT_PLUGIN(obj)                                     \
   (G_TYPE_CHECK_INSTANCE_CAST((obj), flutter_serialport_plugin_get_type(), \
-                              FlutterSerialPortPlugin))
+                              FlutterSerialportPlugin))
 
-struct _FlutterSerialPortPlugin {
+struct _FlutterSerialportPlugin {
   GObject parent_instance;
 };
 
-G_DEFINE_TYPE(FlutterSerialPortPlugin, flutter_serialport_plugin,
+G_DEFINE_TYPE(FlutterSerialportPlugin, flutter_serialport_plugin,
               g_object_get_type())
 
 static void flutter_serialport_plugin_class_init(
-    FlutterSerialPortPluginClass* klass) {}
+    FlutterSerialportPluginClass* klass) {}
 
-static void flutter_serialport_plugin_init(FlutterSerialPortPlugin* self) {}
+static void flutter_serialport_plugin_init(FlutterSerialportPlugin* self) {}
 
 static gchar* g_self_exe() {
   g_autoptr(GError) error = nullptr;
@@ -30,7 +30,7 @@ static gchar* g_self_exe() {
 
 void flutter_serialport_plugin_register_with_registrar(
     FlPluginRegistrar* registrar) {
-  FlutterSerialPortPlugin* plugin = FLUTTER_SERIALPORT_PLUGIN(
+  FlutterSerialportPlugin* plugin = FLUTTER_SERIALPORT_PLUGIN(
       g_object_new(flutter_serialport_plugin_get_type(), nullptr));
 
   g_autofree gchar* self_exe = g_self_exe();

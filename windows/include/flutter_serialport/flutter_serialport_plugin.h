@@ -13,7 +13,7 @@
 extern "C" {
 #endif
 
-FLUTTER_PLUGIN_EXPORT void FlutterSerialPortPluginRegisterWithRegistrar(
+FLUTTER_PLUGIN_EXPORT void FlutterSerialportPluginRegisterWithRegistrar(
     FlutterDesktopPluginRegistrarRef registrar);
 
 #if defined(__cplusplus)

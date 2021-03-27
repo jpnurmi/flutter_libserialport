@@ -11,10 +11,10 @@ G_BEGIN_DECLS
 #define FLUTTER_PLUGIN_EXPORT
 #endif
 
-typedef struct _FlutterSerialPortPlugin FlutterSerialPortPlugin;
+typedef struct _FlutterSerialportPlugin FlutterSerialportPlugin;
 typedef struct {
   GObjectClass parent_class;
-} FlutterSerialPortPluginClass;
+} FlutterSerialportPluginClass;
 
 FLUTTER_PLUGIN_EXPORT GType flutter_serialport_plugin_get_type();
 

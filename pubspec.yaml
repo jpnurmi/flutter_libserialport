@@ -23,11 +23,11 @@ flutter:
   plugin:
     platforms:
       android:
-        pluginClass: FlutterSerialPortPlugin
+        pluginClass: FlutterSerialportPlugin
         package: org.sigrok.flutter_serialport
       linux:
-        pluginClass: FlutterSerialPortPlugin
+        pluginClass: FlutterSerialportPlugin
       macos:
-        pluginClass: FlutterSerialPortPlugin
+        pluginClass: FlutterSerialportPlugin
       windows:
-        pluginClass: FlutterSerialPortPlugin
+        pluginClass: FlutterSerialportPlugin
