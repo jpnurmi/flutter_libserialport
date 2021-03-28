@@ -56,10 +56,10 @@ class _ExampleAppState extends State<ExampleApp> {
                     children: [
                       CardListTile('Description', port.description),
                       CardListTile('Transport', port.transport.toTransport()),
-                      CardListTile('USB Bus', port.busNumber.toPadded()),
-                      CardListTile('USB Device', port.deviceNumber.toPadded()),
-                      CardListTile('Vendor ID', port.vendorId.toHex()),
-                      CardListTile('Product ID', port.productId.toHex()),
+                      CardListTile('USB Bus', port.busNumber?.toPadded()),
+                      CardListTile('USB Device', port.deviceNumber?.toPadded()),
+                      CardListTile('Vendor ID', port.vendorId?.toHex()),
+                      CardListTile('Product ID', port.productId?.toHex()),
                       CardListTile('Manufacturer', port.manufacturer),
                       CardListTile('Product Name', port.productName),
                       CardListTile('Serial Number', port.serialNumber),
@@ -81,7 +81,7 @@ class _ExampleAppState extends State<ExampleApp> {
 
 class CardListTile extends StatelessWidget {
   final String name;
-  final String value;
+  final String? value;
 
   CardListTile(this.name, this.value);
 
