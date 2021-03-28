@@ -1,4 +1,4 @@
-package org.sigrok.flutter_serialport
+package org.sigrok.flutter_libserialport
 
 import androidx.annotation.NonNull
 
@@ -9,8 +9,8 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-/** FlutterSerialportPlugin */
-class FlutterSerialportPlugin: FlutterPlugin, MethodCallHandler {
+/** FlutterLibserialportPlugin */
+class FlutterLibserialportPlugin: FlutterPlugin, MethodCallHandler {
   /// The MethodChannel that will the communication between Flutter and native Android
   ///
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
@@ -18,7 +18,7 @@ class FlutterSerialportPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_serialport")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_libserialport")
     channel.setMethodCallHandler(this)
   }
 

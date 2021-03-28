@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-set(PROJECT_NAME "flutter_serialport")
+set(PROJECT_NAME "flutter_libserialport")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
 set(PLUGIN_NAME "${PROJECT_NAME}_plugin")
@@ -15,7 +15,7 @@ target_include_directories(${PLUGIN_NAME} INTERFACE
   "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(${PLUGIN_NAME} PRIVATE flutter flutter_wrapper_plugin)
 
-set(flutter_serialport_bundled_libraries
+set(flutter_libserialport_bundled_libraries
   "$<TARGET_FILE:serialport>"
   PARENT_SCOPE
 )

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "Demonstrates how to use the flutter_serialport plugin." "\0"
+            VALUE "FileDescription", "Demonstrates how to use the flutter_libserialport plugin." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "flutter_serialport_example" "\0"
+            VALUE "InternalName", "flutter_libserialport_example" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2020 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "flutter_serialport_example.exe" "\0"
-            VALUE "ProductName", "flutter_serialport_example" "\0"
+            VALUE "OriginalFilename", "flutter_libserialport_example.exe" "\0"
+            VALUE "ProductName", "flutter_libserialport_example" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
