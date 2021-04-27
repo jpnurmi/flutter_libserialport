@@ -37,7 +37,7 @@ void flutter_libserialport_plugin_register_with_registrar(
   g_autofree gchar* self_exe = g_self_exe();
   g_autofree gchar* libserialport_path =
       g_build_filename(self_exe, "lib", "libserialport.so", nullptr);
-  setenv("LIBSERIALPORT_PATH", libserialport_path, 0);
+  g_setenv("LIBSERIALPORT_PATH", libserialport_path, 0);
 
   g_object_unref(plugin);
 }
