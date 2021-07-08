@@ -1,3 +1,7 @@
+## 0.2.2
+
+* Example: add serial device entitlement for macOS.
+
 ## 0.2.1
 
 * Fix build error on Ubuntu 16.04.
