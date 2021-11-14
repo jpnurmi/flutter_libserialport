@@ -1,3 +1,7 @@
+## 0.2.3
+
+* Fix linux builds for newer kernels (thanks @sitic)
+
 ## 0.2.2
 
 * Example: add serial device entitlement for macOS.
