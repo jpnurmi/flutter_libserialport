@@ -54,7 +54,7 @@
 /* #undef HAVE_STRUCT_TERMIOS_C_OSPEED */
 
 /* Define to 1 if the system has the type `struct termiox'. */
-#define HAVE_STRUCT_TERMIOX 1
+/* #undef HAVE_STRUCT_TERMIOX */
 
 /* sys/file.h is available. */
 #define HAVE_SYS_FILE_H 1
