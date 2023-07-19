@@ -39,7 +39,7 @@
 #define HAVE_STRUCT_SERIAL_STRUCT 1
 
 /* Define to 1 if the system has the type `struct termios2'. */
-#define HAVE_STRUCT_TERMIOS2 1
+#define HAVE_STRUCT_TERMIOS2 0
 
 /* Define to 1 if `c_ispeed' is a member of `struct termios2'. */
 #define HAVE_STRUCT_TERMIOS2_C_ISPEED 1
