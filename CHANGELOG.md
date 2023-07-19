@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Upgrade to Dart 2.17, Flutter 3.0, libserialport 0.3
+
 ## 0.2.3
 
 * Fix linux builds for newer kernels (thanks @sitic)
