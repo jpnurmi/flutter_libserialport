@@ -590,6 +590,15 @@ SP_API enum sp_return sp_open(struct sp_port *port, enum sp_mode flags)
 		RETURN_CODEVAL(ret);
 	}
 
+	/*
+	 * Assume a default baudrate if the OS does not provide one.
+	 * Cannot assign -1 here since Windows holds the baudrate in
+	 * the DCB and does not configure the rate individually.
+	 */
+	if (config.baudrate == 0) {
+		config.baudrate = 9600;
+	}
+
 	/* Set sane port settings. */
 #ifdef _WIN32
 	data.dcb.fBinary = TRUE;
@@ -633,7 +642,8 @@ SP_API enum sp_return sp_open(struct sp_port *port, enum sp_mode flags)
 	data.term.c_cc[VTIME] = 0;
 
 	/* Ignore modem status lines; enable receiver; leave control lines alone on close. */
-	data.term.c_cflag |= (CLOCAL | CREAD | HUPCL);
+	data.term.c_cflag |= (CLOCAL | CREAD);
+	data.term.c_cflag &= ~(HUPCL);
 #endif
 
 #ifdef _WIN32
@@ -876,7 +886,7 @@ SP_API enum sp_return sp_blocking_write(struct sp_port *port, const void *buf,
 	unsigned char *ptr = (unsigned char *) buf;
 	struct timeout timeout;
 	fd_set fds;
-	int result;
+	ssize_t result;
 
 	timeout_start(&timeout, timeout_ms);
 
@@ -1081,7 +1091,7 @@ SP_API enum sp_return sp_blocking_read(struct sp_port *port, void *buf,
 	unsigned char *ptr = (unsigned char *) buf;
 	struct timeout timeout;
 	fd_set fds;
-	int result;
+	ssize_t result;
 
 	timeout_start(&timeout, timeout_ms);
 
@@ -1204,7 +1214,7 @@ SP_API enum sp_return sp_blocking_read_next(struct sp_port *port, void *buf,
 	size_t bytes_read = 0;
 	struct timeout timeout;
 	fd_set fds;
-	int result;
+	ssize_t result;
 
 	timeout_start(&timeout, timeout_ms);
 
