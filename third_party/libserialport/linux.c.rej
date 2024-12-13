@@ -1,0 +1,10 @@
+--- a/libserialport_internal.h
++++ b/libserialport_internal.h
+@@ -142,6 +142,7 @@ struct sp_port {
+ 	int usb_address;
+ 	int usb_vid;
+ 	int usb_pid;
++	int usb_interface_number;
+ 	char *usb_manufacturer;
+ 	char *usb_product;
+ 	char *usb_serial;
