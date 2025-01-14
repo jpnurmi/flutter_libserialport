@@ -25,6 +25,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'com.sigrok.flutter_libserialport'
     compileSdkVersion 29
 
     sourceSets {
