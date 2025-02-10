@@ -114,6 +114,7 @@ SP_API enum sp_return sp_get_port_by_name(const char *portname, struct sp_port *
 	port->usb_address = -1;
 	port->usb_vid = -1;
 	port->usb_pid = -1;
+	port->usb_interface_number = -1;
 	port->usb_manufacturer = NULL;
 	port->usb_product = NULL;
 	port->usb_serial = NULL;
@@ -179,7 +180,7 @@ SP_API enum sp_return sp_get_port_usb_bus_address(const struct sp_port *port,
 }
 
 SP_API enum sp_return sp_get_port_usb_vid_pid(const struct sp_port *port,
-                                              int *usb_vid, int *usb_pid)
+                                              int *usb_vid, int *usb_pid, int *usb_interface_number)
 {
 	TRACE("%p", port);
 
@@ -194,6 +195,8 @@ SP_API enum sp_return sp_get_port_usb_vid_pid(const struct sp_port *port,
 		*usb_vid = port->usb_vid;
 	if (usb_pid)
 		*usb_pid = port->usb_pid;
+	if (usb_interface_number)
+		*usb_interface_number = port->usb_interface_number;
 
 	RETURN_OK();
 }

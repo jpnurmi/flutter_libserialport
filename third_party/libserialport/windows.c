@@ -224,8 +224,8 @@ static void enumerate_hub_ports(struct sp_port *port, HANDLE hub_device,
 
 			/* Finally grab detailed information regarding the device. */
 			port->usb_address = connection_info_ex->DeviceAddress + 1;
-			port->usb_vid = connection_info_ex->DeviceDescriptor.idVendor;
-			port->usb_pid = connection_info_ex->DeviceDescriptor.idProduct;
+			/*port->usb_vid = connection_info_ex->DeviceDescriptor.idVendor;
+			port->usb_pid = connection_info_ex->DeviceDescriptor.idProduct;*/
 
 			if (connection_info_ex->DeviceDescriptor.iManufacturer)
 				port->usb_manufacturer = get_string_descriptor(hub_device, index,
@@ -417,6 +417,7 @@ SP_PRIV enum sp_return get_port_details(struct sp_port *port)
 		/* Get more informations for USB connected ports. */
 		if (port->transport == SP_TRANSPORT_USB) {
 			char usb_path[MAX_USB_PATH] = "", tmp[MAX_USB_PATH];
+			char hardware_ids[512];
 			char device_id[MAX_DEVICE_ID_LEN];
 
 			/* Recurse over parents to build the USB device path. */
@@ -457,9 +458,37 @@ SP_PRIV enum sp_return get_port_details(struct sp_port *port)
 					snprintf(usb_path, sizeof(usb_path), "%d%s%s",
 					         (int)address, *tmp ? "." : "", tmp);
 				}
+
+				/* Grab hardware ids. */
+				size = sizeof(hardware_ids);
+				if (CM_Get_DevNode_Registry_PropertyA(dev_inst, CM_DRP_HARDWAREID                  ,
+				                        0, &hardware_ids, &size, 0) == CR_SUCCESS) {
+					//printf("Result hardware ids: %s\n", hardware_ids);
+				}
 			} while (CM_Get_Parent(&dev_inst, dev_inst, 0) == CR_SUCCESS);
 
 			port->usb_path = strdup(usb_path);
+			
+			char *result = strstr(hardware_ids, "MI_");
+			size_t MI_idx = result - hardware_ids;
+			if((MI_idx >= 0) && ((MI_idx + 4) < sizeof(hardware_ids))) {
+				int a = hardware_ids[MI_idx + 3] - '0';
+				int b = hardware_ids[MI_idx + 4] -'0';
+				port->usb_interface_number = a * 10 + b;
+			}
+
+			
+			result = strstr(hardware_ids, "VID_");
+			size_t VID_idx = result - hardware_ids;
+			if((VID_idx >= 0) && ((VID_idx + 7) < sizeof(hardware_ids))) {
+				sscanf((hardware_ids + VID_idx + 4), "%4x", &port->usb_vid);
+			}
+
+			result = strstr(hardware_ids, "PID_");
+			size_t PID_idx = result - hardware_ids;
+			if((PID_idx >= 0) && ((PID_idx + 7) < sizeof(hardware_ids))) {
+				sscanf((hardware_ids + PID_idx + 4), "%4x", &port->usb_pid);
+			}
 
 			/* Wake up the USB device to be able to read string descriptor. */
 			char *escaped_port_name;
