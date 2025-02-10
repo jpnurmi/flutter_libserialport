@@ -1,3 +1,8 @@
+## 0.5.0
+
+* Add namespace for Android
+* Update Kotlin to 2.0.0
+
 ## 0.4.0
 
 * Upgrade libserialport sources to 0.1.1
