@@ -14,7 +14,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  libserialport: ^0.3.0
+  libserialport:
+    git: https://github.com/AurelienBallier/libserialport.dart
 
 dev_dependencies:
   flutter_test:
