@@ -1,3 +1,7 @@
+## 0.6.0
+* Add support to Flutter 3.29.0
+* Minor fixes
+
 ## 0.5.0
 
 * Add namespace for Android
