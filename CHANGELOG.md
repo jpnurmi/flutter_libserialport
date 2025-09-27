@@ -1,3 +1,8 @@
+## 0.6.1
+
+* Add support for 16KB memory page size (Android 15+ requirement)
+* Update Android build configuration to use mavenCentral instead of deprecated jcenter
+
 ## 0.6.0
 * Add support to Flutter 3.29.0
 * Minor fixes

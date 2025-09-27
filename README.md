@@ -15,4 +15,8 @@ Supported platforms:
 
 To use this package, add `flutter_libserialport` as a [dependency in your pubspec.yaml file](https://dart.dev/tools/pub/dependencies).
 
+## Android 15+ Compatibility
+
+This package supports 16KB memory page sizes required by Android 15+. If you're building an app that targets Android 15 or later, this package will work correctly with Google Play's new requirements.
+
 ![screenshot](https://raw.githubusercontent.com/jpnurmi/flutter_libserialport/main/doc/images/flutter_libserialport.png)

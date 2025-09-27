@@ -1,3 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="org.sigrok.flutter_libserialport">
+  <application>
+    <!-- Support for 16KB memory page size required by Android 15+ -->
+    <property
+      android:name="android.app.16kb_page_size_compatible"
+      android:value="true" />
+  </application>
 </manifest>
