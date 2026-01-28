@@ -12,8 +12,16 @@ add_library(${PROJECT_NAME} SHARED
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE
-  -std=c99 -Wall -Wextra -pedantic -Wmissing-prototypes -Wshadow)
+  -std=c99 -Wall -Wextra -pedantic -Wmissing-prototypes -Wshadow
+  # Add 16KB page size alignment support
+  -D_FILE_OFFSET_BITS=64
+  -ffunction-sections -fdata-sections)
 target_compile_definitions(${PROJECT_NAME} PRIVATE LIBSERIALPORT_ATBUILD)
+
+# Add linker flags for 16KB page alignment
+set_target_properties(${PROJECT_NAME} PROPERTIES
+  LINK_FLAGS "-Wl,-z,max-page-size=16384 -Wl,--gc-sections"
+)
 target_include_directories(${PROJECT_NAME} PRIVATE
   "${CMAKE_CURRENT_SOURCE_DIR}"
   "${CMAKE_CURRENT_SOURCE_DIR}/${SOURCE_PATH}")

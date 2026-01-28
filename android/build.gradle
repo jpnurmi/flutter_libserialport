@@ -34,6 +34,17 @@ android {
     defaultConfig {
         minSdkVersion 21
         namespace 'org.sigrok.flutter_libserialport'
+
+        // Support for 16KB page size alignment
+        externalNativeBuild {
+            cmake {
+                // Ensure 16KB alignment for Android 15+ compatibility
+                arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+                cppFlags "-D_FILE_OFFSET_BITS=64"
+                // Add linker flags for proper alignment
+                arguments "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-z,max-page-size=16384"
+            }
+        }
     }
     lintOptions {
         disable 'InvalidPackage'

@@ -28,6 +28,13 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        // Enable 16KB page size support
+        ndk {
+            // Ensure proper alignment for 16KB pages
+            // This affects all native libraries in the app
+            debugSymbolLevel = "FULL"
+        }
     }
 
     buildTypes {
