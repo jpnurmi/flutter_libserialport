@@ -672,7 +672,7 @@ SP_API enum sp_return sp_get_port_usb_bus_address(const struct sp_port *port,
  *
  * @since 0.1.1
  */
-SP_API enum sp_return sp_get_port_usb_vid_pid(const struct sp_port *port, int *usb_vid, int *usb_pid);
+SP_API enum sp_return sp_get_port_usb_vid_pid(const struct sp_port *port, int *usb_vid, int *usb_pid, int *usb_interface_number);
 
 /**
  * Get the USB manufacturer string of a USB serial adapter port.
