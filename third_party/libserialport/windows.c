@@ -299,8 +299,16 @@ static void get_usb_details(struct sp_port *port, DEVINST dev_inst_match)
 	SP_DEVINFO_DATA device_info_data;
 	ULONG i, size = 0;
 
+	/* Early validation - check if device instance is still valid */
+	if (dev_inst_match == 0) {
+		return;
+	}
+
 	device_info = SetupDiGetClassDevs(&GUID_CLASS_USB_HOST_CONTROLLER, NULL, NULL,
 	                                  DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);
+	if (device_info == INVALID_HANDLE_VALUE) {
+		return;
+	}
 	device_info_data.cbSize = sizeof(device_info_data);
 
 	for (i = 0; SetupDiEnumDeviceInfo(device_info, i, &device_info_data); i++) {
@@ -383,6 +391,7 @@ SP_PRIV enum sp_return get_port_details(struct sp_port *port)
 		if (device_key == INVALID_HANDLE_VALUE)
 			continue;
 		size = sizeof(value);
+		memset(value, 0, sizeof(value)); /* Initialize buffer */
 		if (RegQueryValueExA(device_key, "PortName", NULL, &type, (LPBYTE)value,
 		                     &size) != ERROR_SUCCESS || type != REG_SZ) {
 			RegCloseKey(device_key);
@@ -396,6 +405,7 @@ SP_PRIV enum sp_return get_port_details(struct sp_port *port)
 		/* Check port transport type. */
 		dev_inst = device_info_data.DevInst;
 		size = sizeof(class);
+		memset(class, 0, sizeof(class)); /* Initialize buffer */
 		cr = CR_FAILURE;
 		while (CM_Get_Parent(&dev_inst, dev_inst, 0) == CR_SUCCESS &&
 		       (cr = CM_Get_DevNode_Registry_PropertyA(dev_inst,
@@ -408,6 +418,7 @@ SP_PRIV enum sp_return get_port_details(struct sp_port *port)
 		/* Get port description (friendly name). */
 		dev_inst = device_info_data.DevInst;
 		size = sizeof(description);
+		memset(description, 0, sizeof(description)); /* Initialize buffer */
 		while ((cr = CM_Get_DevNode_Registry_PropertyA(dev_inst,
 		          CM_DRP_FRIENDLYNAME, 0, description, &size, 0)) != CR_SUCCESS
 		       && CM_Get_Parent(&dev_inst, dev_inst, 0) == CR_SUCCESS) { }
@@ -423,6 +434,7 @@ SP_PRIV enum sp_return get_port_details(struct sp_port *port)
 			dev_inst = device_info_data.DevInst;
 			do {
 				/* Verify that this layer of the tree is USB related. */
+				memset(device_id, 0, sizeof(device_id)); /* Initialize buffer */
 				if (CM_Get_Device_IDA(dev_inst, device_id,
 				                      sizeof(device_id), 0) != CR_SUCCESS
 				    || strncmp(device_id, "USB\\", 4))
@@ -431,6 +443,7 @@ SP_PRIV enum sp_return get_port_details(struct sp_port *port)
 				/* Discard one layer for composite devices. */
 				char compat_ids[512], *p = compat_ids;
 				size = sizeof(compat_ids);
+				memset(compat_ids, 0, sizeof(compat_ids)); /* Initialize buffer */
 				if (CM_Get_DevNode_Registry_PropertyA(dev_inst,
 				                                      CM_DRP_COMPATIBLEIDS, 0,
 				                                      &compat_ids,
@@ -471,10 +484,15 @@ SP_PRIV enum sp_return get_port_details(struct sp_port *port)
 			                     OPEN_EXISTING,
 			                     FILE_ATTRIBUTE_NORMAL|FILE_FLAG_OVERLAPPED, 0);
 			free(escaped_port_name);
-			CloseHandle(handle);
+			if (handle != INVALID_HANDLE_VALUE) {
+				CloseHandle(handle);
+			}
 
 			/* Retrieve USB device details from the device descriptor. */
-			get_usb_details(port, device_info_data.DevInst);
+			/* Only retrieve details if device instance is still valid */
+			if (device_info_data.DevInst != 0) {
+				get_usb_details(port, device_info_data.DevInst);
+			}
 		}
 		break;
 	}
@@ -530,15 +548,25 @@ SP_PRIV enum sp_return list_ports(struct sp_port ***list)
 		RegEnumValue(key, index, value, &value_len,
 			NULL, &type, (LPBYTE)data, &data_size) == ERROR_SUCCESS)
 	{
-		if (type == REG_SZ) {
+		/* Prevent infinite loops by limiting the number of iterations */
+		if (index > 1000) {
+			DEBUG("Too many registry entries, stopping enumeration");
+			break;
+		}
+		
+		if (type == REG_SZ && data_size > 0) {
 			data_len = data_size / sizeof(TCHAR);
+			/* Ensure we don't go beyond buffer bounds */
+			if (data_len >= max_data_len) {
+				data_len = max_data_len - 1;
+			}
 			data[data_len] = '\0';
 #ifdef UNICODE
 			name_len = WideCharToMultiByte(CP_ACP, 0, data, -1, NULL, 0, NULL, NULL);
 #else
 			name_len = data_len + 1;
 #endif
-			if (!(name = malloc(name_len))) {
+			if (name_len > 0 && !(name = malloc(name_len))) {
 				SET_ERROR(ret, SP_ERR_MEM, "Registry port name malloc failed");
 				goto out;
 			}
