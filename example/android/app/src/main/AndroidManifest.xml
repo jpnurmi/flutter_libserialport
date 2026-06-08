@@ -3,6 +3,10 @@
         android:label="flutter_libserialport_example"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- Support for 16KB memory page size required by Android 15+ -->
+        <property
+          android:name="android.app.16kb_page_size_compatible"
+          android:value="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
