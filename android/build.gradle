@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:9.1.0'
+        classpath 'com.android.tools.build:gradle:9.0.1'
     }
 }
 
@@ -23,7 +23,7 @@ apply plugin: 'com.android.library'
 
 android {
     namespace 'org.sigrok.flutter_libserialport'
-    compileSdk 34
+    compileSdk 37
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
