@@ -3,7 +3,7 @@ description: Demonstrates how to use the flutter_libserialport plugin.
 publish_to: 'none'
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=3.12.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -11,5 +11,9 @@ dependencies:
   flutter_libserialport:
     path: ../
 
+  material_ui: any
 flutter:
   uses-material-design: true
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

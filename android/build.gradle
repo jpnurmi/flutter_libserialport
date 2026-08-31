@@ -2,31 +2,28 @@ group 'org.sigrok.flutter_libserialport'
 version '0.5.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '2.0.0'
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:9.1.0'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
 
 android {
     namespace 'org.sigrok.flutter_libserialport'
-    compileSdk 34
+    compileSdk 37
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -46,7 +43,7 @@ android {
             }
         }
     }
-    lintOptions {
+    lint {
         disable 'InvalidPackage'
     }
     externalNativeBuild {
@@ -55,14 +52,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = '17'
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
+    }
 }
